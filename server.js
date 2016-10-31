@@ -3,18 +3,18 @@
 //include requirement
 var express = require('express');
 var bodyParser = require('body-parser');
-var path = require('path');
 var mongoose = require('mongoose');
 var redis = require('redis');
 
 
 //connect to mongo database
 mongoose.connect('mongodb://localhost/TriviaGame');
-mongoose.set('debug', true)
+mongoose.set('debug', true);
 
 //redis connection
 client = redis.createClient();
 client.on('connect', function() {
+    'use strict';
     console.log('connected');
 });
 
@@ -29,36 +29,36 @@ var questionSchema = new mongoose.Schema({
 var QuestionDb = mongoose.model('questionCollection', questionSchema);
 
 var app = express();
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use("/", express.static("public"));
+app.use('/', express.static('public'));
 console.log('!---- Trivia Game server side, listening at port 3000 ----!');
 
 //----Function Code------------------------------------------
 
 //set defautl and create redis
-setDefaultScore = function() {
-	client.set('ScoreRight','0', function(err, reply) {
+var setDefaultScore = function() {
+  'use strict';
+	client.set('ScoreRight','0', function(err, replyR) {
 		if (err) {
 			console.log(err);
 		} else {
-			console.log('Key "ScoreRight" added');
+			console.log('Key ' + replyR + ' added');
 		}
 	});
-	client.set('ScoreWrong','0', function(err, reply) {
+	client.set('ScoreWrong','0', function(err, replyW) {
 		if (err) {
 			console.log(err);
 		} else {
-			console.log('Key "ScoreWrong" added');
+			console.log('Key ' + replyW + ' added');
 		}
 	});
 };
 
 //return score from redis
 app.get('/score', function(req,res){
+  'use strict';
   console.log('score');
 
   client.get('ScoreRight',function(err, replyRight){
@@ -74,6 +74,7 @@ app.get('/score', function(req,res){
 
 //get the answer from user and compare it then return t/f
 app.post('/answer', function(req,res){
+  'use strict';
   console.log('answering');
   var answerIn = req.body.answer;
   var idIn = req.body.answerId;
@@ -115,6 +116,7 @@ app.post('/answer', function(req,res){
 
 //return one question at random to the user
 app.get('/question', function(req, res){
+  'use strict';
   console.log('Retrive Question');
 
   //initialize score one load
@@ -129,7 +131,7 @@ app.get('/question', function(req, res){
   var test;
   QuestionDb.find({},{answerID:1}).exec(
     function(err, dataCount){
-    test = Math.floor(Math.random() * (dataCount.length - 1) + 1);
+    test = Math.floor(Math.random() * ((dataCount.length+1) - 1) + 1);
 
     //retrive question
     QuestionDb.find({answerID:test}).exec(
@@ -153,6 +155,7 @@ app.get('/question', function(req, res){
 
 //Adding new question
 app.post('/question', function(req, res){
+  'use strict';
   console.log('Add Question Function');
 
   var questionIn = req.body.question;
@@ -186,7 +189,7 @@ app.post('/question', function(req, res){
         }
         else{
           console.log('Question Added');
-          res.json('Question Added')
+          res.json('Question Added');
         }
       });//save function
     });//end DB find exec

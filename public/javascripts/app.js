@@ -1,6 +1,6 @@
 /* jshint browser: true, jquery: true, camelcase: true, indent: 2, undef: true, quotmark: single, maxlen: 80, trailing: true, curly: true, eqeqeq: true, forin: true, immed: true, latedef: true, newcap: true, nonew: true, unused: true, strict: true */
 
-var waitClick;
+var WaitClick;
 var AddQuestionFunction;
 var AnswerQuestionOne;
 var GetScore;
@@ -37,7 +37,7 @@ var AdjustQuestion = function(questionObject){
     '<button class="ui button fluid teal large ToAnswer"' +
     'id="AnswerToThis" type="button">Answer</button>'
   );
-  waitClick();
+  WaitClick();
 };//end AdjustQuestion
 
 //function that always listening
@@ -165,7 +165,7 @@ function AddQuestionFunction(){
           dataType: 'json',
           contentType: 'application/json',
           url: 'http://localhost:3000/question',
-          success: function(data){
+          success: function(){
             console.log('send quesition complete');
           }
 
@@ -174,7 +174,7 @@ function AddQuestionFunction(){
 }//end AddQuestionFunction
 
 //wait for user to answer
-function waitClick(){
+function WaitClick(){
   'use strict';
   $('#AnswerToThis').click(function(){
     console.log('ToAnswer');
