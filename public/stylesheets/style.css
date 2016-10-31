@@ -1,0 +1,43 @@
+.header_seg 
+{
+  height: 200px;
+}
+
+.main_seg 
+{
+  height: 500px;
+}
+
+.top_header 
+{
+  padding-top: 50px;
+  font-weight: bolder;
+  font-style: italic;
+  font-size: 60px;
+}
+
+.form_field 
+{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.siteheader{
+  font-size: 20px;
+  font-weight: bolder;
+  font-style: italic;
+}
+
+.form_seg{
+  /*max-width: 450px;*/
+  max-height: 450 px!important;
+  /*class name changed to main_seg*/
+}
+
+.main_window {
+  height: 85%;
+}
+
+body {
+  background: black;
+}
