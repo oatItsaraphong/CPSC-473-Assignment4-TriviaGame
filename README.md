@@ -1,7 +1,14 @@
 # CPSC-473-Assignment4-TriviaGame
-Trivia game, but need to add the question first if the database is empty
 
+Start:
 install dependency: npm install
 
 start by using: node server.js
 
+
+Use the applicaiton:
+
+If there is no question in the DB the user need to provide
+the question in a add question section first.
+
+The score will always keep track of all the player combind
