@@ -1,9 +1,18 @@
 # CPSC-473-Assignment4-TriviaGame
 
 Start:
-install dependency: npm install
 
-start by using: node server.js
+install dependency: npm install
+(if needed)
+
+open mongoDB
+$HOME/mongodb/bin/mongod --dbpath=$HOME/mongodb/data
+
+open redis
+$HOME/redis/src/redis-server
+
+start server
+node server.js
 
 
 Use the applicaiton:
