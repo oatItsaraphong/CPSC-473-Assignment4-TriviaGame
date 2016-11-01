@@ -61,14 +61,10 @@ app.get('/score', function(req,res){
   'use strict';
   console.log('score');
 
-  client.get('ScoreRight',function(err, replyRight){
-      console.log('up: ' + replyRight);
+  client.mget('ScoreRight','ScoreWrong',function(err, replyRight){
+      console.log('All Score: ' + replyRight[1]);
 
-      client.get('ScoreWrong',function(err, replyWrong){
-          console.log('down: ' + replyWrong);
-
-            res.json({'right': replyRight, 'wrong' : replyWrong});
-        });
+        res.json({'right': replyRight[0], 'wrong' : replyRight[1]});
     });
 });
 
